@@ -59,6 +59,11 @@ li.checked{
 li.checked .text{
   text-decoration: line-through;
 }
+/* Change Checked Checkbox Color  */
+input[type="checkbox"]:checked { /* change "blue" browser chrome to yellow */
+  filter: invert(100%) hue-rotate(150deg) brightness(1.5) opacity(.5);
+}
+
 .delete-todo {
   float: right;
   font-weight: bold;
