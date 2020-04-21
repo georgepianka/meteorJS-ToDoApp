@@ -1,5 +1,9 @@
 import { Meteor } from 'meteor/meteor';
-import { Todos } from '../todos.js';
+
+//import '../imports/accounts-config.js';
+
+import '../imports/methods.js';
+
 Meteor.startup(() => {
   // code to run on server at startup
 });

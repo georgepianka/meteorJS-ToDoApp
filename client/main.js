@@ -6,8 +6,9 @@ import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './main.css';
 import './main.html';
-import { Todos } from '../todos.js';
-import '../accounts-config.js';
+import { Todos } from '../imports/todos.js';
+import '../imports/accounts-config.js';
+import '../imports/methods.js';
 
 
 Template.main.helpers({
@@ -20,25 +21,19 @@ Template.main.events({
   'submit .new-todo'(event){
     event.preventDefault();
     let text = event.target.text.value;
-
-    Todos.insert({
-      text: text,
-      createdAt: new Date(),
-      userId: Meteor.userId(),
-      username: Meteor.user().username
-    });
+    Meteor.call('addTodo', text);
     event.target.text.value=''
   },
 
   'click .toggle-checked'(){
     //The helper's implementation can access the current data context as this.
     //Basically, whenever you use a block tag like #each, it creates a new data context, in which //helper methods and the block are evaluated.
-    Todos.update(this._id, {$set:{checked: ! this.checked}})
+    Meteor.call('setChecked', this._id, !this.checked)
   },
 
   'click .delete-todo'(){
     if(confirm('Are You Sure?')){
-      Todos.remove(this._id);
+      Meteor.call('deleteTodo', this._id);
     }
   }
 });
