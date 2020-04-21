@@ -11,7 +11,26 @@ import { Todos } from '../todos.js';
 
 Template.main.helpers({
   todos() {
-      return Todos.find();
+      return Todos.find({}, {sort: {createdAt: -1}});
+  }
+});
+
+Template.main.events({
+  'submit .new-todo'(event){
+    event.preventDefault();
+    let text = event.target.text.value;
+
+    Todos.insert({
+      text: text,
+      createdAt: new Date()
+    });
+    event.target.text.value=''
+  },
+
+  'click .toggle-checked'(){
+    //The helper's implementation can access the current data context as this.
+    //Basically, whenever you use a block tag like #each, it creates a new data context, in which //helper methods and the block are evaluated.
+    Todos.update(this._id, {$set:{checked: ! this.checked}})
   }
 });
 
