@@ -40,6 +40,10 @@ Template.main.events({
   }
 });
 
+Accounts.ui.config({
+  passwordSignupFields: "USERNAME_ONLY"
+})
+
 //window.Todos = Todos; // here we make it global
 
 /*And then as long as this file is imported by client/main.js, you can use Todos on the console.
