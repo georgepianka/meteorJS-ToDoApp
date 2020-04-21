@@ -7,6 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './main.css';
 import './main.html';
 import { Todos } from '../todos.js';
+import '../accounts-config.js';
 
 
 Template.main.helpers({
@@ -22,7 +23,9 @@ Template.main.events({
 
     Todos.insert({
       text: text,
-      createdAt: new Date()
+      createdAt: new Date(),
+      userId: Meteor.userId(),
+      username: Meteor.user().username
     });
     event.target.text.value=''
   },
@@ -40,9 +43,7 @@ Template.main.events({
   }
 });
 
-Accounts.ui.config({
-  passwordSignupFields: "USERNAME_ONLY"
-})
+
 
 //window.Todos = Todos; // here we make it global
 
