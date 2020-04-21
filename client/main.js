@@ -31,6 +31,12 @@ Template.main.events({
     //The helper's implementation can access the current data context as this.
     //Basically, whenever you use a block tag like #each, it creates a new data context, in which //helper methods and the block are evaluated.
     Todos.update(this._id, {$set:{checked: ! this.checked}})
+  },
+
+  'click .delete-todo'(){
+    if(confirm('Are You Sure?')){
+      Todos.remove(this._id);
+    }
   }
 });
 
