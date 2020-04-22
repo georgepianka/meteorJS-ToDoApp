@@ -42,19 +42,24 @@
         <input class="form-control" name="text" type="text" placeholder="Type a Task...">
       </div>
     </form>
-    {{/if}}
+
 
       <ul>
         {{#each todos}}
            <li class="{{#if checked}}checked{{/if}}">
-             {{#if currentUser}}
+
              <button class="delete-todo">&times;</button>
              <input type="checkbox" checked="{{checked}}" class="toggle-checked">
-             {{/if}}
+
              <span class="text">
                {{text}}
              </span>
+
            </li>
         {{/each}}
       </ul>
+      {{else}}
+      <span class="display-5"> Please Login</span>
+
+      {{/if}}
   </template>

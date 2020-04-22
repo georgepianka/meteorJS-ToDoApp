@@ -1,3 +1,14 @@
+https://www.meteor.com/tutorials/blaze/running-on-mobile
+
+
+
+https://blog.scottlogic.com/2015/07/14/meteor.html
+> meteor create meteor-stocks
+
+meteor remove insecure
+meteor remove autopublish
+
+
 > Todos = require('/todos').Todos
 Collection {_transform: null, _connection: Connection, _collection: LocalCollection, _name: "todos", _makeNewID: ƒ, …}
 

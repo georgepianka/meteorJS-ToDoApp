@@ -11,6 +11,8 @@ import '../imports/accounts-config.js';
 import '../imports/methods.js';
 
 
+Meteor.subscribe('todos')
+
 Template.main.helpers({
   todos() {
       return Todos.find({}, {sort: {createdAt: -1}});

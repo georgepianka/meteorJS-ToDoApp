@@ -3,6 +3,7 @@ import { Todos } from '../imports/todos.js';
 
 // Meteor Methods
 Meteor.methods({
+
   addTodo(text){
     if(!Meteor.userId()){
       throw new Meteor.Error('not-authorized');
@@ -15,15 +16,18 @@ Meteor.methods({
       });
   },
   deleteTodo(todoId){
-    if(!Meteor.userId()){
-      throw new Meteor.Error('not-authorized');
-    }
-    Todos.remove(todoId);
+     var todo = Todos.findOne(todoId);
+     if(todo.userId !== Meteor.userId()){
+       throw new Meteor.Error('not-authorized');
+     }
+     Todos.remove(todoId);
   },
   setChecked(todoId, setChecked){
-    if(!Meteor.userId()){
-      throw new Meteor.Error('not-authorized');
-    }
+     var todo = Todos.findOne(todoId);
+     if(todo.userId !== Meteor.userId()){
+       throw new Meteor.Error('not-authorized');
+     }
     Todos.update(todoId, {$set:{checked: setChecked}});
   }
+
 });
